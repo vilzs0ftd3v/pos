@@ -117,7 +117,7 @@ object main_form: Tmain_form
         end      
         item
           Alignment = taCenter
-          Font.Height = -15
+          Font.Height = -11
           Font.Name = 'Varela Round'
           Title.Alignment = taCenter
           Title.Caption = 'Count'
@@ -126,7 +126,7 @@ object main_form: Tmain_form
         end      
         item
           Alignment = taCenter
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Varela Round'
           Title.Alignment = taCenter
           Title.Caption = 'Stocks'
