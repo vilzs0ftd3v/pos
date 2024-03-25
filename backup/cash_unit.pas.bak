@@ -1,0 +1,30 @@
+unit cash_unit;
+
+{$mode ObjFPC}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, DBGrids, Grids;
+
+type
+
+  { Tcash_frm }
+
+  Tcash_frm = class(TForm)
+    StringGrid1: TStringGrid;
+  private
+
+  public
+
+  end;
+
+var
+  cash_frm: Tcash_frm;
+
+implementation
+
+{$R *.lfm}
+
+end.
+

@@ -1,0 +1,1 @@
+forfiles /p "C:\backup" /s /m *.* /D -3 /C "cmd /c del @path"

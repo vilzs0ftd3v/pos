@@ -1,0 +1,130 @@
+object search_frm: Tsearch_frm
+  Left = 2447
+  Height = 409
+  Top = 527
+  Width = 724
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Search'
+  ClientHeight = 409
+  ClientWidth = 724
+  Color = clMenuHighlight
+  DragKind = dkDock
+  DragMode = dmAutomatic
+  KeyPreview = True
+  OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseUp = FormMouseUp
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '3.2.0.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 339
+    Top = 64
+    Width = 725
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BevelOuter = bvNone
+    ClientHeight = 339
+    ClientWidth = 725
+    Color = clCream
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 0
+    object itemSearch_grid: TDBGrid
+      Left = 0
+      Height = 342
+      Top = 0
+      Width = 724
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      AutoEdit = False
+      Color = clMenuBar
+      Columns = <      
+        item
+          Title.Caption = 'variation_id'
+          Visible = False
+          FieldName = 'variation_id'
+        end      
+        item
+          Title.Caption = 'unit_id'
+          Visible = False
+          FieldName = 'unit_id'
+        end      
+        item
+          Font.Height = -15
+          Font.Name = 'Varela Round'
+          Title.Caption = 'description'
+          Width = 382
+          FieldName = 'variation_name'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -15
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'unit'
+          Width = 111
+          FieldName = 'unit'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -15
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'price'
+          Width = 110
+          FieldName = 'price'
+          DisplayFormat = '#,###,##0.00'
+        end      
+        item
+          Font.Height = -13
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'stocks'
+          Width = 100
+          FieldName = 'item_count'
+        end>
+      DataSource = retailDs
+      FixedCols = 0
+      Font.Height = -20
+      Font.Name = 'Varela Round'
+      Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
+      ParentFont = False
+      TabOrder = 0
+      OnCellClick = itemSearch_gridCellClick
+      OnKeyDown = itemSearch_gridKeyDown
+    end
+  end
+  object close_btn: TSpeedButton
+    Left = 658
+    Height = 64
+    Top = 0
+    Width = 66
+    Caption = 'x'
+    Flat = True
+    Font.Color = clWhite
+    Font.Height = -20
+    Font.Name = 'Varela Round'
+    Font.Style = [fsBold]
+    OnClick = close_btnClick
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 16
+    Height = 25
+    Top = 24
+    Width = 75
+    Caption = 'Button1'
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object retailDs: TDataSource
+    DataSet = pos_dm.retailQuery
+    Left = 256
+    Top = 8
+  end
+  object wholesaleDs: TDataSource
+    DataSet = pos_dm.wholesaleQuery
+    Left = 344
+  end
+end

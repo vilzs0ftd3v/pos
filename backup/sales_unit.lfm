@@ -1,0 +1,431 @@
+object sales_frm: Tsales_frm
+  Left = 1876
+  Height = 473
+  Top = 150
+  Width = 691
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'Sales'
+  ClientHeight = 473
+  ClientWidth = 691
+  Color = clMenuHighlight
+  OnClose = FormClose
+  OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseUp = FormMouseUp
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '3.2.0.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 405
+    Top = 64
+    Width = 691
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    ClientHeight = 401
+    ClientWidth = 687
+    Color = clCream
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 0
+    object sales_grid: TDBGrid
+      Left = 7
+      Height = 159
+      Top = 48
+      Width = 521
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      AutoFillColumns = True
+      Color = clWindow
+      Columns = <      
+        item
+          Alignment = taCenter
+          Font.Height = -12
+          Font.Name = 'Varela Round'
+          Title.Font.Height = -17
+          Title.Font.Name = 'Varela Round'
+          Title.Caption = 'No.'
+          Width = 100
+          FieldName = 'receipt_no'
+        end      
+        item
+          Font.Height = -9
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'Date'
+          Width = 100
+          FieldName = 'dateSold'
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Caption = 'Total'
+          Width = 100
+          FieldName = 'total'
+        end      
+        item
+          Alignment = taCenter
+          Title.Alignment = taCenter
+          Title.Caption = 'Tendered'
+          Width = 100
+          FieldName = 'tenderAmount'
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Caption = 'Status'
+          Width = 100
+          FieldName = 'status'
+        end>
+      DataSource = sales_ds
+      FixedCols = 0
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+      ParentFont = False
+      TabOrder = 0
+      OnCellClick = sales_gridCellClick
+    end
+    object search_edit: TEdit
+      Left = 7
+      Height = 23
+      Top = 16
+      Width = 521
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 1
+      TextHint = 'receipt no'
+      OnKeyDown = search_editKeyDown
+    end
+    object Bevel1: TBevel
+      Left = 7
+      Height = 46
+      Top = -3
+      Width = 521
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object Bevel2: TBevel
+      Left = 536
+      Height = 34
+      Top = 16
+      Width = 120
+      BorderSpacing.CellAlignHorizontal = ccaRightBottom
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      ParentShowHint = False
+      Shape = bsBottomLine
+      Style = bsRaised
+    end
+    object salesFrom_date: TJLabeledDateEdit
+      Left = 536
+      Height = 19
+      Top = 24
+      Width = 123
+      DisplayFormat = 'M/d/yyyy'
+      ButtonWidth = 23
+      BorderStyle = bsNone
+      Color = clCream
+      EditLabel.Height = 19
+      EditLabel.Width = 123
+      EditLabel.Caption = 'From:'
+      EditLabel.ParentFont = False
+      EditLabel.Font.Color = clGrayText
+      EditLabel.Font.Height = -17
+      EditLabel.Font.Name = 'Varela Round'
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 2
+    end
+    object void_btn: TJButton
+      Left = 536
+      Height = 45
+      Top = 245
+      Width = 145
+      LCaption.Left = 1
+      LCaption.Height = 43
+      LCaption.Top = 1
+      LCaption.Width = 143
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsNone
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Void'
+      LCaption.Color = clMenuHighlight
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -17
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentColor = False
+      LCaption.ParentFont = False
+      LCaption.Transparent = False
+      Image.Left = 1
+      Image.Height = 43
+      Image.Top = 1
+      Image.Width = 143
+      Image.Align = alClient
+      ClientHeight = 45
+      ClientWidth = 145
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 3
+      OnClick = void_btnClick
+    end
+    object credit_btn: TJButton
+      Left = 536
+      Height = 45
+      Top = 297
+      Width = 145
+      LCaption.Left = 1
+      LCaption.Height = 43
+      LCaption.Top = 1
+      LCaption.Width = 143
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsNone
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Credit'
+      LCaption.Color = clMenuHighlight
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -17
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentColor = False
+      LCaption.ParentFont = False
+      LCaption.Transparent = False
+      Image.Left = 1
+      Image.Height = 43
+      Image.Top = 1
+      Image.Width = 143
+      Image.Align = alClient
+      ClientHeight = 45
+      ClientWidth = 145
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 4
+    end
+    object print_btn: TJButton
+      Left = 536
+      Height = 45
+      Top = 349
+      Width = 145
+      LCaption.Left = 1
+      LCaption.Height = 43
+      LCaption.Top = 1
+      LCaption.Width = 143
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsNone
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Print'
+      LCaption.Color = clMenuHighlight
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -17
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentColor = False
+      LCaption.ParentFont = False
+      LCaption.Transparent = False
+      Image.Left = 1
+      Image.Height = 43
+      Image.Top = 1
+      Image.Width = 143
+      Image.Align = alClient
+      ClientHeight = 45
+      ClientWidth = 145
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 5
+      OnClick = print_btnClick
+    end
+    object salesTo_date: TJLabeledDateEdit
+      Left = 536
+      Height = 19
+      Top = 88
+      Width = 123
+      DisplayFormat = 'M/d/yyyy'
+      ButtonWidth = 23
+      BorderStyle = bsNone
+      Color = clCream
+      EditLabel.Height = 19
+      EditLabel.Width = 123
+      EditLabel.Caption = 'To:'
+      EditLabel.ParentFont = False
+      EditLabel.Font.Color = clGrayText
+      EditLabel.Font.Height = -17
+      EditLabel.Font.Name = 'Varela Round'
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 6
+    end
+    object Bevel3: TBevel
+      Left = 536
+      Height = 34
+      Top = 80
+      Width = 120
+      BorderSpacing.CellAlignHorizontal = ccaRightBottom
+      BorderSpacing.CellAlignVertical = ccaRightBottom
+      ParentShowHint = False
+      Shape = bsBottomLine
+      Style = bsRaised
+    end
+    object return_btn: TJButton
+      Left = 536
+      Height = 45
+      Top = 194
+      Width = 145
+      LCaption.Left = 1
+      LCaption.Height = 43
+      LCaption.Top = 1
+      LCaption.Width = 143
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsNone
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Return'
+      LCaption.Color = clMenuHighlight
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -17
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentColor = False
+      LCaption.ParentFont = False
+      LCaption.Transparent = False
+      Image.Left = 1
+      Image.Height = 43
+      Image.Top = 1
+      Image.Width = 143
+      Image.Align = alClient
+      ClientHeight = 45
+      ClientWidth = 145
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 7
+      OnClick = return_btnClick
+    end
+    object salesDetails_grid: TDBGrid
+      Left = 7
+      Height = 176
+      Top = 216
+      Width = 521
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Color = clWindow
+      Columns = <      
+        item
+          Alignment = taCenter
+          Font.Height = -11
+          Font.Name = 'Varela Round'
+          Font.Style = [fsBold]
+          Title.Caption = 'No.'
+          Width = 60
+          FieldName = 'invoice_id'
+        end      
+        item
+          Font.Height = -11
+          Font.Name = 'Varela Round'
+          Font.Style = [fsBold]
+          Title.Caption = 'Name'
+          Width = 250
+          FieldName = 'variation_name'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -11
+          Font.Name = 'Varela Round'
+          Font.Style = [fsBold]
+          Title.Alignment = taCenter
+          Title.Caption = 'Quantity'
+          Width = 90
+          FieldName = 'quantity'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -11
+          Font.Name = 'Varela Round'
+          Font.Style = [fsBold]
+          Title.Alignment = taCenter
+          Title.Caption = 'Price'
+          Width = 100
+          FieldName = 'price'
+        end>
+      DataSource = salesDetails_ds
+      FixedCols = 0
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
+      ParentFont = False
+      TabOrder = 8
+      OnCellClick = salesDetails_gridCellClick
+    end
+    object search_btn: TJButton
+      Left = 536
+      Height = 45
+      Top = 120
+      Width = 145
+      LCaption.Left = 1
+      LCaption.Height = 43
+      LCaption.Top = 1
+      LCaption.Width = 143
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsNone
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Search'
+      LCaption.Color = clMenuHighlight
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -17
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentColor = False
+      LCaption.ParentFont = False
+      LCaption.Transparent = False
+      Image.Left = 1
+      Image.Height = 43
+      Image.Top = 1
+      Image.Width = 143
+      Image.Align = alClient
+      ClientHeight = 45
+      ClientWidth = 145
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 9
+      OnClick = search_btnClick
+    end
+  end
+  object close_btn: TSpeedButton
+    Left = 625
+    Height = 66
+    Top = 0
+    Width = 66
+    Anchors = [akTop, akRight]
+    Caption = 'x'
+    Flat = True
+    Font.Color = clWhite
+    Font.Height = -20
+    Font.Name = 'Varela Round'
+    Font.Style = [fsBold]
+    OnClick = close_btnClick
+    ParentFont = False
+  end
+  object sales_ds: TDataSource
+    DataSet = pos_dm.sales_query
+    Left = 224
+    Top = 144
+  end
+  object salesDetails_ds: TDataSource
+    DataSet = pos_dm.salesDetails_query
+    Left = 24
+    Top = 312
+  end
+end

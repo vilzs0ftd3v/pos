@@ -1,0 +1,27 @@
+mkdir express-js-typescript-example-tutorial
+cd express-js-typescript-example-tutorial\
+npm init -y
+npm i express
+npm i -D typescript
+npm i -D @types/express
+npx tsc --init - transpile everything to common JS
+line 29 of tsconfig.json 
+//uncomment and specify the src folder
+e. g. "rootDir": "./src",
+//uncomment line 58
+e.g. "outDir": "./",
+
+same with
+"strict": true,                                      /* Enable all strict type-checking options. */
+     "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied 'any' type. */
+     "strictNullChecks": true,                         /* When type checking, take into account 'null' and 'undefined'. */
+     "strictFunctionTypes": true, 
+
+
+npx tsc --build //command to transpile typescript and auto generatae /dist folder
+
+npm i -D nodemon
+
+npm i -D ts-node
+
+npm run start:dev //command to run

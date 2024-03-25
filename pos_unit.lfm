@@ -1,0 +1,397 @@
+object pos_dm: Tpos_dm
+  OldCreateOrder = False
+  Height = 379
+  HorizontalOffset = 757
+  VerticalOffset = 294
+  Width = 838
+  object dbConnection: TMySQL57Connection
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = 'pos_db'
+    KeepConnection = False
+    Password = '70986019'
+    Transaction = SqlTransaction
+    HostName = 'localhost'
+    SkipLibraryVersionCheck = False
+    Left = 24
+    Top = 16
+  end
+  object SqlTransaction: TSQLTransaction
+    Active = False
+    Database = dbConnection
+    Left = 112
+    Top = 16
+  end
+  object loginQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select username,password from user_tbl'
+      'where username=:username'
+      'and password=md5(:password);'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'username'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'password'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 328
+    Top = 16
+  end
+  object retailQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select u.variation_id,'
+      'upper(v.variation_name) as variation_name,'
+      'u.retail_price as price,'
+      'v.item_count,'
+      'u.unit,'
+      'u.cost,'
+      'u.qty,'
+      'u.unit_id'
+      'from unit_tbl u left join variation_tbl v  on v.variation_id = u.variation_id'
+      'where (u.barcode like :keyword and u.unit not in('''') and u.retail_price not in(0) and u.wholesale_price not in(0))'
+      'or (v.variation_name like :keyword and u.retail_price not in(0) and u.wholesale_price not in(0))'
+      'order by u.variation_id'
+      'desc;'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'keyword'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 24
+    Top = 112
+  end
+  object wholesaleQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select u.variation_id,'
+      'upper(v.variation_name) as variation_name,'
+      'u.wholesale_price as price,'
+      'v.item_count,'
+      'u.unit,'
+      'u.cost,'
+      'u.qty,'
+      'u.unit_id'
+      'from unit_tbl u left join variation_tbl v  on v.variation_id = u.variation_id'
+      'where (u.barcode like :keyword and u.unit not in('''') and u.retail_price not in(0) and u.wholesale_price not in(0))'
+      'or (v.variation_name like :keyword and u.retail_price not in(0) and u.wholesale_price not in(0))'
+      'order by u.variation_id'
+      'desc;'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'keyword'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 24
+    Top = 168
+  end
+  object ticketQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select ticket_id,'
+      'variation_id,'
+      'variation_name,'
+      'unit,'
+      'price,'
+      'quantity,'
+      'stockLeft,qty,cost from ticket_tbl'
+      'order by transDate desc,ticket_id desc;'
+      ''
+      ''
+    )
+    InsertSQL.Strings = (
+      ''
+    )
+    UpdateSQL.Strings = (
+      'update ticket_tbl'
+      'set stockLeft=:stockLeft'
+      'where variation_id=:variation_id;'
+      ''
+    )
+    Params = <>
+    Macros = <>
+    Left = 24
+    Top = 256
+  end
+  object isItemCart: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select'
+      'ticket_id,'
+      'variation_id,'
+      'price,'
+      'quantity,'
+      'variation_name,'
+      'stockLeft,'
+      'unit,'
+      'qty,'
+      'cost'
+      'from ticket_tbl'
+      'where variation_id =:variation_id and unit_id=:unit_id and price=:price;'
+      ''
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'variation_id'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'unit_id'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'price'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 88
+    Top = 256
+  end
+  object cartQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    Params = <>
+    Macros = <>
+    Left = 152
+    Top = 256
+  end
+  object subTotalQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select IF((sum(price * quantity))>0,(format(sum(price * quantity),2)),0) as total,'
+      'IF((sum(price * quantity))>0,((sum(price * quantity))),0) as totalAmount from ticket_tbl'
+    )
+    Params = <>
+    Macros = <>
+    Left = 24
+    Top = 312
+  end
+  object updateTicket: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select variation_id,stockLeft from ticket_tbl'
+      'where variation_id=:variation_id'
+      ''
+    )
+    UpdateSQL.Strings = (
+      'update ticket_tbl set stockLeft=:stockLeft'
+      'where variation_id=:variation_id;'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'variation_id'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 88
+    Top = 312
+  end
+  object addQuantity_query: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select ticket_id,price,quantity,stockLeft'
+      'from ticket_tbl'
+      'where ticket_id=:ticket_id'
+    )
+    UpdateSQL.Strings = (
+      'update ticket_tbl set'
+      'quantity=:quantity,'
+      'price=:price,'
+      'stockLeft=:stockLeft'
+      'where'
+      'ticket_id=:ticket_id'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'ticket_id'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 152
+    Top = 312
+  end
+  object getInvoiceReceiptQuery: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select max(invoice_id) from invoice_tbl;'
+    )
+    Params = <>
+    Macros = <>
+    Left = 440
+    Top = 328
+  end
+  object receiptDetails_query: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select now() as today,ticket_id,'
+      'variation_id,'
+      'variation_name,'
+      'unit,'
+      'concat(price,''x'',quantity) as solution,'
+      'format((price*quantity),2) as subtotal,'
+      'quantity,'
+      'stockLeft,qty,cost,unit_id from ticket_tbl'
+      'order by transDate desc,ticket_id desc;'
+      ''
+      ''
+      ''
+    )
+    Params = <>
+    Macros = <>
+    Left = 440
+    Top = 224
+  end
+  object sales_query: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select i.receipt_no,IF(c.customer_name IS NULL,''walk in'',c.customer_name) as customer_name,'
+      'sum(i.price*i.quantity) as total, count(i.invoice_id) as items,i.tenderAmount,'
+      'i.dateSold,i.variation_id, status from invoice_tbl i left join customer_tbl c on i.customer_id = c.customer_id'
+      'where (receipt_no like :keyword) or Date(dateSold) between Date(:fromDate)'
+      'and Date(:toDate)'
+      'GROUP by i.receipt_no desc;'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'keyword'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'fromDate'
+        ParamType = ptInput
+      end    
+      item
+        DataType = ftUnknown
+        Name = 'toDate'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 432
+    Top = 88
+  end
+  object config_query: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    Params = <>
+    Macros = <>
+    Left = 216
+    Top = 16
+  end
+  object salesDetails_query: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select invoice_id,'
+      'variation_name,'
+      'quantity,'
+      'format(price,2) as price'
+      'from invoice_tbl'
+      'where receipt_no =:keyword;'
+      ''
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'keyword'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 432
+    Top = 144
+  end
+  object cancelinvoice_query: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select status,receipt_no from invoice_tbl;'
+    )
+    Params = <>
+    Macros = <>
+    Left = 640
+    Top = 304
+  end
+  object reprintReceipt_query: TSQLQuery
+    FieldDefs = <>
+    Database = dbConnection
+    Transaction = SqlTransaction
+    SQL.Strings = (
+      'select'
+      'receipt_no,'
+      'now() as today,'
+      'variation_id,'
+      'variation_name,'
+      'unit,'
+      'concat(price,''x'',quantity) as solution,'
+      'format((price*quantity),2) as subtotal,'
+      'quantity'
+      'from invoice_tbl where receipt_no =:receipt_no;'
+    )
+    Params = <    
+      item
+        DataType = ftUnknown
+        Name = 'receipt_no'
+        ParamType = ptInput
+      end>
+    Macros = <>
+    Left = 440
+    Top = 280
+  end
+  object item_query: TSQLQuery
+    FieldDefs = <>
+    Params = <>
+    Macros = <>
+    Left = 760
+    Top = 32
+  end
+end

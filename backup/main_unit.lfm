@@ -1,0 +1,484 @@
+object main_form: Tmain_form
+  Left = 532
+  Height = 749
+  Top = 106
+  Width = 1176
+  BorderIcons = []
+  BorderStyle = bsNone
+  Caption = 'pos'
+  ClientHeight = 749
+  ClientWidth = 1176
+  Color = clMenuHighlight
+  Menu = MainMenu1
+  OnClose = FormClose
+  OnKeyDown = FormKeyDown
+  OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseUp = FormMouseUp
+  OnShow = FormShow
+  ShowInTaskBar = stAlways
+  LCLVersion = '3.2.0.0'
+  WindowState = wsFullScreen
+  object close_btn: TSpeedButton
+    Left = 1110
+    Height = 66
+    Top = -1
+    Width = 66
+    Anchors = [akTop, akRight]
+    Caption = 'x'
+    Flat = True
+    Font.Color = clWhite
+    Font.Height = -20
+    Font.Name = 'Varela Round'
+    Font.Style = [fsBold]
+    OnClick = close_btnClick
+    ParentFont = False
+  end
+  object Panel1: TPanel
+    Left = -1
+    Height = 682
+    Top = 64
+    Width = 1177
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ClientHeight = 682
+    ClientWidth = 1177
+    Color = clCream
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 0
+    object StatusBar1: TStatusBar
+      Left = 1
+      Height = 23
+      Top = 658
+      Width = 1175
+      Panels = <>
+      SimplePanel = False
+    end
+    object Bevel1: TBevel
+      Left = 779
+      Height = 46
+      Top = 0
+      Width = 383
+      Anchors = [akRight]
+      Shape = bsBottomLine
+    end
+    object search_edit: TEdit
+      Left = 777
+      Height = 24
+      Top = 13
+      Width = 377
+      Anchors = [akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 1
+      TextHint = 'search'
+      OnKeyDown = search_editKeyDown
+      OnKeyPress = search_editKeyPress
+    end
+    object ticket_grid: TDBGrid
+      Left = 16
+      Height = 584
+      Top = 64
+      Width = 744
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      Color = clMenuBar
+      Columns = <      
+        item
+          Font.Height = -15
+          Font.Name = 'Varela Round'
+          Title.Font.Height = -20
+          Title.Font.Name = 'Varela Round'
+          Title.Caption = 'Description'
+          Width = 336
+          FieldName = 'variation_name'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -15
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'Unit'
+          Width = 95
+          FieldName = 'unit'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -15
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'Price'
+          Width = 115
+          FieldName = 'price'
+          DisplayFormat = '#,###,##0.00'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -15
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'Count'
+          Width = 89
+          FieldName = 'quantity'
+        end      
+        item
+          Alignment = taCenter
+          Font.Height = -13
+          Font.Name = 'Varela Round'
+          Title.Alignment = taCenter
+          Title.Caption = 'Stocks'
+          Width = 99
+          FieldName = 'stockLeft'
+        end>
+      DataSource = ticketDs
+      FixedCols = 0
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      Options = [dgTitles, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
+      ParentFont = False
+      TabOrder = 2
+      OnCellClick = ticket_gridCellClick
+    end
+    object Bevel2: TBevel
+      Left = 15
+      Height = 59
+      Top = -10
+      Width = 293
+      Anchors = [akLeft]
+      Shape = bsBottomLine
+    end
+    object Label2: TLabel
+      Left = 320
+      Height = 19
+      Top = 24
+      Width = 63
+      Anchors = [akLeft]
+      Caption = 'Subtotal:'
+      Font.Color = clActiveBorder
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      Visible = False
+    end
+    object sellTypes_cmb: TComboBox
+      Left = 568
+      Height = 27
+      Top = 19
+      Width = 192
+      Anchors = [akTop, akRight, akBottom]
+      Color = clMenuBar
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ItemHeight = 19
+      ItemIndex = 0
+      Items.Strings = (
+        'retail'
+        'wholesale'
+      )
+      ParentFont = False
+      TabOrder = 3
+      Text = 'retail'
+      OnChange = sellTypes_cmbChange
+    end
+    object Bevel3: TBevel
+      Left = 773
+      Height = 56
+      Top = 526
+      Width = 389
+      Anchors = [akRight, akBottom]
+      Shape = bsBottomLine
+    end
+    object Bevel4: TBevel
+      Left = 777
+      Height = 56
+      Top = 455
+      Width = 381
+      Anchors = [akRight, akBottom]
+      Shape = bsBottomLine
+    end
+    object tender_edit: TEdit
+      Left = 832
+      Height = 56
+      Top = 447
+      Width = 321
+      Alignment = taRightJustify
+      Anchors = [akRight, akBottom]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Color = clHighlight
+      Font.Height = -53
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 4
+      TextHint = '0.00'
+      OnChange = tender_editChange
+    end
+    object Label3: TLabel
+      Left = 777
+      Height = 23
+      Top = 480
+      Width = 81
+      Anchors = [akRight, akBottom]
+      AutoSize = False
+      Caption = 'Tender:'
+      Font.Color = clActiveBorder
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+    end
+    object change_edit: TEdit
+      Left = 845
+      Height = 56
+      Top = 519
+      Width = 316
+      Alignment = taRightJustify
+      Anchors = [akRight, akBottom]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Color = 4079359
+      Font.Height = -53
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 5
+      TextHint = '0.00'
+    end
+    object Label4: TLabel
+      Left = 781
+      Height = 19
+      Top = 556
+      Width = 62
+      Anchors = [akRight, akBottom]
+      Caption = 'Change:'
+      Font.Color = clActiveBorder
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+    end
+    object pay_btn: TJButton
+      Left = 773
+      Height = 56
+      Top = 592
+      Width = 193
+      LCaption.Left = 1
+      LCaption.Height = 54
+      LCaption.Top = 1
+      LCaption.Width = 191
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsCustom
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Pay (F9)'
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -17
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentFont = False
+      Image.Left = 1
+      Image.Height = 54
+      Image.Top = 1
+      Image.Width = 191
+      Image.Align = alClient
+      Anchors = [akRight, akBottom]
+      ClientHeight = 56
+      ClientWidth = 193
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 6
+      OnClick = pay_btnClick
+    end
+    object JButton2: TJButton
+      Left = 974
+      Height = 57
+      Top = 591
+      Width = 190
+      LCaption.Left = 1
+      LCaption.Height = 55
+      LCaption.Top = 1
+      LCaption.Width = 188
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsCustom
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Cancel (F12)'
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -17
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentFont = False
+      Image.Left = 1
+      Image.Height = 55
+      Image.Top = 1
+      Image.Width = 188
+      Image.Align = alClient
+      Anchors = [akRight, akBottom]
+      ClientHeight = 57
+      ClientWidth = 190
+      Color = 2960895
+      ParentColor = False
+      TabOrder = 7
+      OnClick = JButton2Click
+    end
+    object subTotal: TLabel
+      Left = 16
+      Height = 56
+      Top = -7
+      Width = 204
+      Anchors = [akLeft]
+      AutoSize = False
+      Caption = 'subTotal'
+      Font.Height = -47
+      Font.Name = 'Varela Round'
+      ParentFont = False
+    end
+    object Panel2: TPanel
+      Left = 778
+      Height = 377
+      Top = 64
+      Width = 384
+      Anchors = [akTop, akRight, akBottom]
+      BevelOuter = bvNone
+      ClientHeight = 377
+      ClientWidth = 384
+      Color = clMenuBar
+      DockSite = True
+      ParentBackground = False
+      ParentColor = False
+      TabOrder = 8
+      object mainItemSearch_grid: TDBGrid
+        Left = 1
+        Height = 377
+        Top = 0
+        Width = 384
+        Anchors = [akTop, akRight, akBottom]
+        Color = clMenuBar
+        Columns = <        
+          item
+            Title.Caption = 'variation_id'
+            Width = 0
+            Visible = False
+            FieldName = 'variation_id'
+          end        
+          item
+            Title.Caption = 'unit_id'
+            Width = 0
+            Visible = False
+            FieldName = 'unit_id'
+          end        
+          item
+            Font.Height = 13
+            Font.Name = 'Varela Round'
+            Title.Font.Height = 18
+            Title.Font.Name = 'Varela Round'
+            Title.Caption = 'Description'
+            Width = 268
+            FieldName = 'variation_name'
+          end        
+          item
+            Alignment = taCenter
+            Font.Name = 'Varela Round'
+            Title.Alignment = taCenter
+            Title.Font.Name = 'Varela Round'
+            Title.Caption = 'Unit'
+            Width = 43
+            FieldName = 'unit'
+          end        
+          item
+            Alignment = taCenter
+            Font.Name = 'Varela Round'
+            Title.Alignment = taCenter
+            Title.Font.Name = 'Varela Round'
+            Title.Caption = 'Price'
+            Width = 49
+            FieldName = 'price'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Stocks'
+            Width = 0
+            Visible = False
+            FieldName = 'item_count'
+          end>
+        DataSource = retailMainDs
+        FixedCols = 0
+        Options = [dgTitles, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
+        TabOrder = 0
+        OnCellClick = mainItemSearch_gridCellClick
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 8
+    Top = 8
+    object sales_item: TMenuItem
+      Caption = 'Sales'
+      OnClick = sales_itemClick
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'Shortcuts'
+      object isAlphabetical: TMenuItem
+        AutoCheck = True
+        Caption = '(CTRL+A) Alphabetical'
+      end
+      object MenuItem4: TMenuItem
+        Caption = '(F1) Focus'
+      end
+      object MenuItem5: TMenuItem
+        Caption = '(F2) Tendered'
+      end
+    end
+    object MenuItem1: TMenuItem
+      Caption = 'Item'
+      OnClick = MenuItem1Click
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Cash'
+      OnClick = MenuItem3Click
+    end
+  end
+  object ticketDs: TDataSource
+    DataSet = pos_dm.ticketQuery
+    Left = 56
+    Top = 160
+  end
+  object ApplicationProperties1: TApplicationProperties
+    OnActivate = ApplicationProperties1Activate
+    OnDeactivate = ApplicationProperties1Deactivate
+    Left = 493
+    Top = 8
+  end
+  object retailMainDs: TDataSource
+    DataSet = pos_dm.retailQuery
+    Left = 864
+    Top = 168
+  end
+  object wholesaleMainDs: TDataSource
+    DataSet = pos_dm.wholesaleQuery
+    Left = 1032
+    Top = 168
+  end
+  object Process1: TProcess
+    Active = False
+    Options = []
+    Priority = ppNormal
+    StartupOptions = []
+    ShowWindow = swoNone
+    WindowColumns = 0
+    WindowHeight = 0
+    WindowLeft = 0
+    WindowRows = 0
+    WindowTop = 0
+    WindowWidth = 0
+    FillAttribute = 0
+    Left = 369
+    Top = 24
+  end
+end

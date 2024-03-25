@@ -1,0 +1,441 @@
+object item_frm: Titem_frm
+  Left = 798
+  Height = 652
+  Top = 176
+  Width = 851
+  BorderStyle = bsNone
+  Caption = 'item_frm'
+  ClientHeight = 652
+  ClientWidth = 851
+  Color = clMenuHighlight
+  OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseUp = FormMouseUp
+  Position = poScreenCenter
+  LCLVersion = '3.2.0.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 584
+    Top = 64
+    Width = 851
+    ClientHeight = 584
+    ClientWidth = 851
+    Color = clCream
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 0
+    object DBGrid1: TDBGrid
+      Left = 8
+      Height = 162
+      Top = 56
+      Width = 536
+      Color = clWindow
+      Columns = <>
+      TabOrder = 0
+    end
+    object DBGrid2: TDBGrid
+      Left = 8
+      Height = 312
+      Top = 265
+      Width = 536
+      Color = clWindow
+      Columns = <>
+      TabOrder = 1
+    end
+    object search_edit: TEdit
+      Left = 8
+      Height = 23
+      Top = 16
+      Width = 537
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 2
+      TextHint = 'search'
+    end
+    object Bevel1: TBevel
+      Left = 8
+      Height = 46
+      Top = 0
+      Width = 537
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object name_edit: TEdit
+      Left = 556
+      Height = 23
+      Top = 48
+      Width = 285
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 3
+      TextHint = 'name'
+    end
+    object Bevel2: TBevel
+      Left = 552
+      Height = 46
+      Top = 32
+      Width = 289
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object category_edit: TEdit
+      Left = 556
+      Height = 23
+      Top = 104
+      Width = 288
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 4
+      TextHint = 'category'
+    end
+    object Bevel3: TBevel
+      Left = 552
+      Height = 46
+      Top = 88
+      Width = 292
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object save_btn: TJButton
+      Left = 552
+      Height = 33
+      Top = 136
+      Width = 289
+      LCaption.Left = 1
+      LCaption.Height = 31
+      LCaption.Top = 1
+      LCaption.Width = 287
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsCustom
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Save'
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -13
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentFont = False
+      Image.Left = 1
+      Image.Height = 31
+      Image.Top = 1
+      Image.Width = 287
+      Image.Align = alClient
+      Anchors = [akRight, akBottom]
+      ClientHeight = 33
+      ClientWidth = 289
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 5
+      OnClick = save_btnClick
+    end
+    object JButton2: TJButton
+      Left = 552
+      Height = 33
+      Top = 176
+      Width = 289
+      LCaption.Left = 1
+      LCaption.Height = 31
+      LCaption.Top = 1
+      LCaption.Width = 287
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsCustom
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Delete'
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -13
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentFont = False
+      Image.Left = 1
+      Image.Height = 31
+      Image.Top = 1
+      Image.Width = 287
+      Image.Align = alClient
+      Anchors = [akRight, akBottom]
+      ClientHeight = 33
+      ClientWidth = 289
+      Color = 2960895
+      ParentColor = False
+      TabOrder = 6
+      OnClick = JButton2Click
+    end
+    object barcode_edit: TEdit
+      Left = 556
+      Height = 23
+      Top = 232
+      Width = 288
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 7
+      TextHint = 'barcode'
+    end
+    object Bevel5: TBevel
+      Left = 552
+      Height = 30
+      Top = 232
+      Width = 292
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object Bevel6: TBevel
+      Left = 552
+      Height = 30
+      Top = 272
+      Width = 292
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object unit_edit: TEdit
+      Left = 556
+      Height = 23
+      Top = 272
+      Width = 288
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 8
+      TextHint = 'ex. pc, pack, box, bottle, kg'
+    end
+    object Bevel7: TBevel
+      Left = 552
+      Height = 30
+      Top = 312
+      Width = 292
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object cost_edit: TEdit
+      Left = 556
+      Height = 23
+      Top = 312
+      Width = 288
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 9
+      TextHint = 'cost'
+    end
+    object Bevel8: TBevel
+      Left = 552
+      Height = 30
+      Top = 352
+      Width = 292
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object wholesale_edit: TEdit
+      Left = 556
+      Height = 23
+      Top = 352
+      Width = 288
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 10
+      TextHint = 'price for wholesale'
+    end
+    object Bevel9: TBevel
+      Left = 552
+      Height = 30
+      Top = 392
+      Width = 289
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object retail_edit: TEdit
+      Left = 556
+      Height = 23
+      Top = 392
+      Width = 285
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 11
+      TextHint = 'price for retail'
+    end
+    object save_btn1: TJButton
+      Left = 553
+      Height = 33
+      Top = 464
+      Width = 289
+      LCaption.Left = 1
+      LCaption.Height = 31
+      LCaption.Top = 1
+      LCaption.Width = 287
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsCustom
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Save'
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -13
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentFont = False
+      Image.Left = 1
+      Image.Height = 31
+      Image.Top = 1
+      Image.Width = 287
+      Image.Align = alClient
+      Anchors = [akRight, akBottom]
+      ClientHeight = 33
+      ClientWidth = 289
+      Color = clHighlight
+      ParentColor = False
+      TabOrder = 12
+    end
+    object JButton3: TJButton
+      Left = 553
+      Height = 33
+      Top = 504
+      Width = 289
+      LCaption.Left = 1
+      LCaption.Height = 31
+      LCaption.Top = 1
+      LCaption.Width = 287
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsCustom
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Save Changes'
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -13
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentFont = False
+      Image.Left = 1
+      Image.Height = 31
+      Image.Top = 1
+      Image.Width = 287
+      Image.Align = alClient
+      Anchors = [akRight, akBottom]
+      ClientHeight = 33
+      ClientWidth = 289
+      Color = 4227327
+      ParentColor = False
+      TabOrder = 13
+    end
+    object JButton4: TJButton
+      Left = 552
+      Height = 33
+      Top = 544
+      Width = 289
+      LCaption.Left = 1
+      LCaption.Height = 31
+      LCaption.Top = 1
+      LCaption.Width = 287
+      LCaption.ShadowColor = clNone
+      LCaption.ShadowColor2 = clNone
+      LCaption.LabelStyle = lsCustom
+      LCaption.Align = alClient
+      LCaption.Alignment = taCenter
+      LCaption.Caption = 'Delete'
+      LCaption.Font.Color = clBtnHighlight
+      LCaption.Font.Height = -13
+      LCaption.Font.Name = 'Varela Round'
+      LCaption.Layout = tlCenter
+      LCaption.ParentFont = False
+      Image.Left = 1
+      Image.Height = 31
+      Image.Top = 1
+      Image.Width = 287
+      Image.Align = alClient
+      Anchors = [akRight, akBottom]
+      ClientHeight = 33
+      ClientWidth = 289
+      Color = 2960895
+      ParentColor = False
+      TabOrder = 14
+    end
+    object quantity_edit: TEdit
+      Left = 555
+      Height = 23
+      Top = 432
+      Width = 287
+      Anchors = [akTop, akLeft, akRight]
+      AutoSize = False
+      BorderStyle = bsNone
+      Color = clCream
+      Font.Height = -17
+      Font.Name = 'Varela Round'
+      ParentFont = False
+      TabOrder = 15
+      TextHint = 'count of item per base unit'
+    end
+    object Bevel10: TBevel
+      Left = 551
+      Height = 30
+      Top = 432
+      Width = 291
+      Anchors = [akTop, akLeft, akRight]
+      Shape = bsBottomLine
+    end
+    object Label1: TLabel
+      Left = 8
+      Height = 18
+      Top = 232
+      Width = 536
+      AutoSize = False
+      Caption = 'productName_label'
+      Font.Height = 18
+      Font.Name = 'Verdana'
+      ParentFont = False
+    end
+  end
+  object close_btn: TSpeedButton
+    Left = 785
+    Height = 66
+    Top = 0
+    Width = 66
+    Anchors = [akTop, akRight]
+    Caption = 'x'
+    Flat = True
+    Font.Color = clWhite
+    Font.Height = -20
+    Font.Name = 'Varela Round'
+    Font.Style = [fsBold]
+    OnClick = close_btnClick
+    ParentFont = False
+  end
+end

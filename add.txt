@@ -1,0 +1,23 @@
+var
+timeNow: string;
+timeNow := FormatDateTime('yy-mm-dd-hh-nn-ss', now);
+Process1.Executable:='C:/mysql-5.7.35-win32/bin/mysqldump';
+  with Process1.Parameters do
+  begin
+    Add('--user=root');
+    Add('--password=70986019');
+    Add('--host=localhost');
+    Add('--protocol=tcp');
+    Add('--port=3306');
+    Add('--default-character-set=utf8');
+    Add('--routines');
+    Add('--no-data');
+    Add('--single-transaction=TRUE');
+    Add('--all-databases');
+    Add('--result-file=C:/Users/Administrator/Documents/lazarus/4_new/db/dump.sql');
+  end;
+  Process1.Options := Process1.Options + [poWaitOnExit, poUsePipes];
+  Process1.Execute;
+  Process1.free;
+
+  ShowMessage('Finished!'); 
