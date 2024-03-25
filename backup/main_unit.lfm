@@ -11,10 +11,7 @@ object main_form: Tmain_form
   Color = clMenuHighlight
   Menu = MainMenu1
   OnClose = FormClose
-  OnKeyDown = FormKeyDown
-  OnMouseDown = FormMouseDown
-  OnMouseMove = FormMouseMove
-  OnMouseUp = FormMouseUp
+  OnKeyDown = search_editKeyDown
   OnShow = FormShow
   ShowInTaskBar = stAlways
   LCLVersion = '3.2.0.0'
@@ -107,6 +104,7 @@ object main_form: Tmain_form
         end      
         item
           Alignment = taCenter
+          Color = clMenuHighlight
           Font.Height = -15
           Font.Name = 'Varela Round'
           Title.Alignment = taCenter
@@ -117,7 +115,8 @@ object main_form: Tmain_form
         end      
         item
           Alignment = taCenter
-          Font.Height = -11
+          Color = clYellow
+          Font.Height = -15
           Font.Name = 'Varela Round'
           Title.Alignment = taCenter
           Title.Caption = 'Count'
@@ -126,7 +125,7 @@ object main_form: Tmain_form
         end      
         item
           Alignment = taCenter
-          Font.Height = -11
+          Font.Height = -15
           Font.Name = 'Varela Round'
           Title.Alignment = taCenter
           Title.Caption = 'Stocks'
@@ -141,6 +140,7 @@ object main_form: Tmain_form
       ParentFont = False
       TabOrder = 2
       OnCellClick = ticket_gridCellClick
+      OnKeyDown = ticket_gridKeyDown
     end
     object Bevel2: TBevel
       Left = 15
@@ -182,6 +182,7 @@ object main_form: Tmain_form
       TabOrder = 3
       Text = 'retail'
       OnChange = sellTypes_cmbChange
+      OnKeyDown = search_editKeyDown
     end
     object Bevel3: TBevel
       Left = 773
@@ -216,6 +217,7 @@ object main_form: Tmain_form
       TabOrder = 4
       TextHint = '0.00'
       OnChange = tender_editChange
+      OnKeyDown = search_editKeyDown
     end
     object Label3: TLabel
       Left = 777
@@ -412,6 +414,7 @@ object main_form: Tmain_form
         Options = [dgTitles, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgDisplayMemoText]
         TabOrder = 0
         OnCellClick = mainItemSearch_gridCellClick
+        OnKeyDown = ticket_gridKeyDown
       end
     end
   end

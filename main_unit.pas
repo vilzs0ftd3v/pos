@@ -51,7 +51,7 @@ type
     procedure ApplicationProperties1Deactivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure mainItemSearch_gridCellClick(Column: TColumn);
-    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+
     procedure FormMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure FormMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
@@ -61,6 +61,8 @@ type
     procedure FormShow(Sender: TObject);
 
     procedure JButton2Click(Sender: TObject);
+
+
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure sales_itemClick(Sender: TObject);
@@ -71,7 +73,12 @@ type
     procedure sellTypes_cmbChange(Sender: TObject);
 
     procedure tender_editChange(Sender: TObject);
+
     procedure ticket_gridCellClick(Column: TColumn);
+    procedure ticket_gridKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+
+
   private
 
   public
@@ -113,8 +120,10 @@ begin
 
      if(isCheckAlphabetical)then begin
         pos_dm.populateSearchItem(keyword+'%',sellTypes);
+
      end else begin
         pos_dm.populateSearchItem('%'+keyword+'%',sellTypes);
+
      end;
 
      setTableCols(sellTypes);
@@ -123,11 +132,14 @@ procedure Tmain_form.setTableCols(sellTypes:string);
 begin
      if(sellTypes = 'retail')then begin
         mainItemSearch_grid.DataSource:= retailMainDs;
+
      end;
 
      if(sellTypes = 'wholesale')then begin
         mainItemSearch_grid.DataSource:= wholesaleMainDs;
+
      end;
+
 end;                //----------------------------//
 
 
@@ -220,6 +232,8 @@ end;
 
 procedure Tmain_form.search_editKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
+var
+   tendered,subtotals:double;
 begin
    if (Key = VK_RETURN) then begin
          if(search_edit.Text<>'')then begin
@@ -269,6 +283,63 @@ begin
               showMessage('Kindly key in a search value.');
          end;
    end;
+
+
+
+   if (Key = VK_F9) then begin
+
+     if(tender_edit.Text<>'')then begin
+        if((TryStrToFloat(tender_edit.Text,tendered)) and (TryStrToFloat(stringReplace(subtotal.Caption,',','',[rfReplaceAll,rfIgnoreCase]),subtotals)))then begin
+             if(tendered>=subtotals)then begin
+
+                  //showMessage(intToStr(myTicket.receiptNo));
+                  reports_frm.receipt_no.Text:=intToStr(myTicket.receiptNo);
+                  reports_frm.total.Text:=subTotal.Caption;
+
+                  //myTicket.saveItemsOnReceipt(myTicket.invoice_id,tendered,0);
+                  myTicket.saveItemsOnReceipt(myTicket.receiptNo,tendered,0);
+                  pos_dm.populateReceiptTicket;
+                  reports_frm.receiptDetails_frm.PreviewModal;
+                  myTicket.cancelTicket;
+                  tender_edit.Text:='0.00';
+                  change_edit.Text:='0.00';
+                  myTicket.populateTicket;{populate item in ticket}
+
+
+                  search_edit.SetFocus;
+                  if(myTicket.getSubTotal <> '0')then begin
+                      subTotal.Caption:=myTicket.getSubTotal;{get and display subtotal}
+                  end else begin
+                      subTotal.Caption:='0.00';
+                  end;
+
+             end;
+        end else begin
+             showMessage('Please insert a valid integer.');
+             tender_edit.Text:='';
+        end;
+     end else begin
+          showMessage('Please input a tendered amount.');
+     end;
+
+
+   end;
+   if (Key = VK_F12) then begin
+        myTicket.cancelTicket;
+        subTotal.Caption:='0.00';
+   end;
+
+
+   if (Key = VK_F1) then begin
+
+      search_edit.SetFocus;
+   end;
+
+  if (Key = VK_F2) then begin
+
+      tender_edit.SetFocus;
+   end;
+
 end;
 
 procedure Tmain_form.search_editKeyPress(Sender: TObject; var Key: char);
@@ -281,7 +352,9 @@ end;
 
 procedure Tmain_form.sellTypes_cmbChange(Sender: TObject);
 begin
-     showMessage(sellTypes_cmb.Text);
+
+     main_form.populateItem(main_form.search_edit.Text,main_form.sellTypes_cmb.Text,main_form.isAlphabetical.Checked);
+
 end;
 
 
@@ -302,6 +375,7 @@ begin
   end;
 
 end;
+
 
 procedure Tmain_form.ticket_gridCellClick(Column: TColumn);
 begin
@@ -327,14 +401,89 @@ begin
 
 end;
 
+procedure Tmain_form.ticket_gridKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+   tendered,subtotals:double;
+begin
+  if (Key = VK_F9) then begin
+
+     if(tender_edit.Text<>'')then begin
+        if((TryStrToFloat(tender_edit.Text,tendered)) and (TryStrToFloat(stringReplace(subtotal.Caption,',','',[rfReplaceAll,rfIgnoreCase]),subtotals)))then begin
+             if(tendered>=subtotals)then begin
+
+                  //showMessage(intToStr(myTicket.receiptNo));
+                  reports_frm.receipt_no.Text:=intToStr(myTicket.receiptNo);
+                  reports_frm.total.Text:=subTotal.Caption;
+
+                  //myTicket.saveItemsOnReceipt(myTicket.invoice_id,tendered,0);
+                  myTicket.saveItemsOnReceipt(myTicket.receiptNo,tendered,0);
+                  pos_dm.populateReceiptTicket;
+                  reports_frm.receiptDetails_frm.PreviewModal;
+                  myTicket.cancelTicket;
+                  tender_edit.Text:='0.00';
+                  change_edit.Text:='0.00';
+                  myTicket.populateTicket;{populate item in ticket}
+
+
+                  search_edit.SetFocus;
+                  if(myTicket.getSubTotal <> '0')then begin
+                      subTotal.Caption:=myTicket.getSubTotal;{get and display subtotal}
+                  end else begin
+                      subTotal.Caption:='0.00';
+                  end;
+
+             end;
+        end else begin
+             showMessage('Please insert a valid integer.');
+             tender_edit.Text:='';
+        end;
+     end else begin
+          showMessage('Please input a tendered amount.');
+     end;
+
+
+   end;
+   if (Key = VK_F12) then begin
+        myTicket.cancelTicket;
+        subTotal.Caption:='0.00';
+   end;
+
+
+    if (Key = VK_R) then begin
+      sellTypes_cmb.Text:='retail';
+      main_form.populateItem(main_form.search_edit.Text,main_form.sellTypes_cmb.Text,main_form.isAlphabetical.Checked);
+   end;
+
+   if (Key = VK_W) then begin
+      sellTypes_cmb.Text:='wholesale';
+      main_form.populateItem(main_form.search_edit.Text,main_form.sellTypes_cmb.Text,main_form.isAlphabetical.Checked);
+   end;
+
+
+   if (Key = VK_F1) then begin
+
+      search_edit.SetFocus;
+   end;
+
+  if (Key = VK_F2) then begin
+
+      tender_edit.SetFocus;
+   end;
+end;
+
+
+
 procedure Tmain_form.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
+
   if Button = mbLeft then begin
      MouseIsDown:=true;
      PX:=X;
      PY:=Y;
    end;
+
 end;
 
 procedure Tmain_form.ApplicationProperties1Activate(Sender: TObject);
@@ -404,11 +553,7 @@ begin
   {==========================================================================}
 end;
 
-procedure Tmain_form.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-begin
 
-end;
 
 
 procedure Tmain_form.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
